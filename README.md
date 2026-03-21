@@ -15,9 +15,7 @@
 2. 集成帖子摘要自动生成能力：发帖时调用 Gemini API 生成摘要，更新帖子后自动重算，并为接口调用失败提供本地兜底逻辑。
 3. 采用较完整的后端工程实践：使用 JWT 鉴权、Pydantic Schema、SQLAlchemy relationship、joinedload 查询优化，以及评论逻辑删除机制。
 
-
 ## Core Features
-
 - User authentication with JWT
 - Create, update and view posts
 - Post list with search, author filter and pagination
@@ -32,27 +30,5 @@
 
 ### 1. Clone the project
 ```bash
-git clone <your-repo-url>
-cd <your-project-folder>
-
-
-
-
-## API Overview
-
-### Auth
-- `POST /login` - 用户登录
-
-### Posts
-- `POST /posts/` - 创建帖子并生成摘要
-- `GET /posts/` - 获取帖子列表（支持分页、搜索、作者筛选）
-- `GET /posts/{post_id}` - 获取单个帖子详情
-- `PATCH /posts/{post_id}` - 更新帖子并重新生成摘要
-
-### Comments
-- `POST /posts/{post_id}/comments` - 创建评论
-- `GET /posts/{post_id}/comments` - 获取某篇帖子的评论列表
-- `DELETE /posts/{post_id}/comments/{comment_id}` - 逻辑删除评论
-
-### Votes
-- `POST /vote` - 点赞或取消点赞
+git clone <https://github.com/yaminooo666/content-community-backend>
+cd <content-community-backend>
