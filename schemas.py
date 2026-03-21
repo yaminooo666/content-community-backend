@@ -20,7 +20,7 @@ class CreatePost(BaseModel):
 class UserOut(BaseModel):
     id: int
     name: str
-    # 别忘了这个“翻译开关”，让它能读懂 SQLAlchemy 对象
+    
     model_config = ConfigDict(from_attributes=True)
 
 

@@ -8,7 +8,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 
-# 创建一个使用 bcrypt 算法的粉碎机环境
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def get_password_hash(password:str):
@@ -18,7 +18,7 @@ def verify_password(plain_password:str, hashed_password:str):
     return pwd_context.verify(plain_password, hashed_password)
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")#OAuth2PasswordBearer是生成一个感应门的图纸
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 def access(token: str = Depends(oauth2_scheme),db:Session=Depends(get_db)):
     
