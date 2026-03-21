@@ -1,1 +1,5 @@
-.evn
+.env
+venv/
+__pycache__/
+*.pyc
+test.db
