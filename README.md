@@ -78,7 +78,7 @@
 ### 用户相关
 - `POST /auth/register/`
 - `POST /auth/login/`
-- `POST /auth/user/me/`
+- `GET /auth/user/me/`
 
 ### 帖子相关
 - `POST /posts/`
@@ -93,7 +93,7 @@
 - `POST /posts/{post_id}/comments/`
 - `GET /posts/{post_id}/comments/`
 - `DELETE /posts/{post_id}/comments/{comment_id}/`
-- `POAT /vote/`
+- `POST /vote/`
 
 
 
@@ -145,12 +145,13 @@
 
 ```bash
 pip install -r requirements.txt
+```
 
 ### 2. 配置 .env
-DATABASE_URL = "sqlite:///./test.db"
-GEMINI_API_KEY = your_api_key
+参考 .env.example
 
 ### 3. 启动项目
-python -m uvicorn main:app --reload
 
+```bash
+python -m uvicorn main:app --reload
 ```
