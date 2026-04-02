@@ -76,20 +76,24 @@
 ## 主要接口
 
 ### 用户相关
-- `POST /register/`
-- `POST /login/`
+- `POST /auth/register/`
+- `POST /auth/login/`
+- `POST /auth/user/me/`
 
 ### 帖子相关
 - `POST /posts/`
 - `GET /posts/`
+- `GET /posts/me/`
 - `GET /posts/{post_id}/`
 - `PATCH /posts/{post_id}/`
 - `DELETE /posts/{post_id}/`
+- `POST /posts/categories/`
 
 ### 评论与点赞相关
-- `POST /comments/`
-- `PATCH /comments/{comment_id}/`
-- `POST /likes/`
+- `POST /posts/{post_id}/comments/`
+- `GET /posts/{post_id}/comments/`
+- `DELETE /posts/{post_id}/comments/{comment_id}/`
+- `POAT /vote/`
 
 
 
