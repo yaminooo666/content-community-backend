@@ -142,6 +142,8 @@
 ## 本地运行
 
 ### 1. 安装依赖
+
+```bash
 pip install -r requirements.txt
 
 ### 2. 配置 .env
@@ -150,3 +152,5 @@ GEMINI_API_KEY = your_api_key
 
 ### 3. 启动项目
 python -m uvicorn main:app --reload
+
+```
