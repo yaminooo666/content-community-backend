@@ -96,14 +96,15 @@
 
 ## 项目截图
 
+### 接口概览
+![swagger overview](./assets/swagger-overview.png)
+
 ### 登录与鉴权
 ![login jwt](./assets/login-jwt.png)
 
 ### 搜索与分页
 ![search pagination](./assets/search-pagination.png)
 
-### 接口概览
-![swagger overview](./assets/swagger-overview.png)
 
 
 
@@ -135,13 +136,13 @@
 
 
 ## 本地运行
-1. 安装依赖
+
+### 1. 安装依赖
 pip install fastapi uvicorn sqlalchemy pydantic pydantic-settings python-jose passlib
 
-2. 配置 .env
+### 2. 配置 .env
 DATABASE_URL = "sqlite:///./test.db"
 GEMINI_API_KEY = your_api_key
 
-
-3. 启动项目
+### 3. 启动项目
 python -m uvicorn main:app --reload
