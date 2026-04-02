@@ -142,7 +142,7 @@
 ## 本地运行
 
 ### 1. 安装依赖
-pip install fastapi uvicorn sqlalchemy pydantic pydantic-settings python-jose passlib
+pip install -r requirements.txt
 
 ### 2. 配置 .env
 DATABASE_URL = "sqlite:///./test.db"
