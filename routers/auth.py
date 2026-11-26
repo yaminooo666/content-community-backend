@@ -2,7 +2,12 @@
 import models, schemas
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from security import access,get_password_hash, verify_password
+from security import (
+    access,
+    get_password_hash,
+    verify_password,
+    create_access_token
+)
 from database import get_db
 from fastapi.security import OAuth2PasswordRequestForm
 from jose import jwt
@@ -47,16 +52,18 @@ def login(user_in: OAuth2PasswordRequestForm = Depends(),db:Session=Depends(get_
     if not verify_password(user_in.password, db_user.hash_password):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="user not exist" )
 
-    access_token= jwt.encode({'sub': db_user.name}, 'secret', algorithm='HS256')
+    access_token = create_access_token(
+        {"sub": db_user.name}
+    )
 
     return {"access_token":access_token, "token_type": "bearer"}
 
 @router.get("/user/me")
-def user_page(current_user:models.User=Depends(access)):
-   
+def user_page(current_user: models.User = Depends(access)):
     return {
-        "message": f"尊贵的 VIP {current_user.name}，欢迎进入机密档案室！",
-        "你的加密密码长这样": current_user.hash_password}
-        
+        "id": current_user.id,
+        "name": current_user.name,
+        "email": current_user.email
+    }
 
 

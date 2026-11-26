@@ -14,7 +14,7 @@ router=APIRouter(
 def post_vote(
     to_vote:schemas.VoteCreate,
     db:Session=Depends(get_db),
-    user:User=Depends(access)
+    user:models.User=Depends(access)
 ):
     db_post=db.query(models.Post).filter(to_vote.post_id==models.Post.id).first()
     if not db_post:

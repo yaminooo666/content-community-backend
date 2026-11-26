@@ -6,6 +6,8 @@ from fastapi import HTTPException,Depends
 from database import get_db
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
+from config import settings
+from datetime import datetime, timedelta, timezone
 
 
 
@@ -24,7 +26,12 @@ def access(token: str = Depends(oauth2_scheme),db:Session=Depends(get_db)):
     
     try:
     
-        decode = jwt.decode(token, 'secret', algorithms=['HS256'])
+        decode = jwt.decode(
+            token,
+            settings.jwt_secret_key,
+            algorithms=[settings.jwt_algorithm],
+            options={"require_exp": True}
+        )
         name=decode.get('sub')
 
         if not name:
@@ -45,3 +52,18 @@ def access(token: str = Depends(oauth2_scheme),db:Session=Depends(get_db)):
         raise HTTPException(status_code=401, detail="not login" )
 
     return user
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+
+    expire = datetime.now(timezone.utc) + timedelta(
+        minutes=settings.access_token_expire_minutes
+    )
+
+    to_encode.update({"exp": expire})
+
+    return jwt.encode(
+        to_encode,
+        settings.jwt_secret_key,
+        algorithm=settings.jwt_algorithm
+    )
